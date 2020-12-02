@@ -1,11 +1,12 @@
 from holehe.core import *
 from holehe.localuseragent import *
-def quizlet(email):
+
+def quizlet(email,client=httpx.AsyncClient()):
     headers = {
         'User-Agent': random.choice(ua["browsers"]["chrome"]),
     }
 
-    response = requests.get("https://quizlet.com/webapi/3.3/validate-email", headers=headers, params={'email': email})
+    response = client.get("https://quizlet.com/webapi/3.3/validate-email", headers=headers, params={'email': email})
 
     try:
         existingAccount = response.json()["responses"][0]["data"]["validateEmail"]["existingAccount"]
