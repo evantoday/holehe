@@ -19,7 +19,7 @@ def deliveroo(email):
         'TE': 'Trailers',
     }
 
-    data = '{"email_address":"'+email+'"}'
+    data = {"email_address":"'+email+'"}
 
     response = requests.post('https://consumer-ow-api.deliveroo.com/orderapp/v1/check-email', headers=headers, data=data)
     if response.status_code==200:
